@@ -55,11 +55,10 @@ class MasterViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row]
-                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-                controller.navigationItem.leftItemsSupplementBackButton = true
+                let detailViewController = segue.destinationViewController as! DetailViewController
+                detailViewController.detailItem = objects[indexPath.row]
+//                detailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+//                detailViewController.navigationItem.leftItemsSupplementBackButton = true
             }
         }
     }
@@ -78,7 +77,7 @@ class MasterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
         let object = objects[indexPath.row]
-        cell.textLabel!.text = object as! String
+        cell.textLabel!.text = object
         return cell
     }
 
