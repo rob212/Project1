@@ -55,10 +55,10 @@ class MasterViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let detailViewController = segue.destinationViewController as! DetailViewController
+                let detailViewController = (segue.destinationViewController as! UINavigationController).topViewController  as! DetailViewController
                 detailViewController.detailItem = objects[indexPath.row]
-//                detailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-//                detailViewController.navigationItem.leftItemsSupplementBackButton = true
+                detailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                detailViewController.navigationItem.leftItemsSupplementBackButton = true
             }
         }
     }
